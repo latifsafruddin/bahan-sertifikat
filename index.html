@@ -611,13 +611,19 @@
             },
             logout: () => { window.app.state.currentUser = null; window.app.navigate('home'); },
             downloadFile: (type) => {
-                window.app.showToast(window.app.t('t_mod_start'));
-                setTimeout(() => {
-                    const blob = new Blob(["[DUMMY FILE CONTENT]"], { type: 'application/octet-stream' });
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a'); a.href = url; a.download = type === 'pdf' ? 'EBOOK.pdf' : 'PPT.pptx';
-                    document.body.appendChild(a); a.click(); document.body.removeChild(a);
-                }, 800);
+    window.app.showToast(window.app.t('t_mod_start'));
+    
+    // Sesuaikan nama file ini dengan nama file asli yang Anda upload di GitHub
+    const fileName = type === 'pdf' ? 'EBOOK BUAT WEBSITE AI.pdf' : 'PPT BUAT WEBSITE AI.pptx';
+    
+    const a = document.createElement('a');
+    a.href = fileName;
+    a.target = '_blank';
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+},
             },
             generateCertificate: () => {
                 const user = window.app.state.currentUser; if (!user) return;
