@@ -609,17 +609,27 @@
                 } catch(e) { window.app.hideLoading(); window.app.showToast("Error login", "error"); }
             },
             logout: () => { window.app.state.currentUser = null; window.app.navigate('home'); },
-            downloadFile: (type) => {
-                window.app.showToast(window.app.t('t_mod_start'));
-                const fileName = type === 'pdf' ? 'URL_LINK_GOOGLE_DRIVE_EBOOK_ANDA' : 'URL_LINK_GOOGLE_DRIVE_PPT_ANDA';
-                const a = document.createElement('a');
-                a.href = fileName;
-                a.target = '_blank';
-                a.download = fileName;
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-            },
+          downloadFile: (type) => {
+    window.app.showToast(window.app.t('t_mod_start'));
+    
+    // Ganti URL di bawah ini dengan link Google Drive Anda
+    const fileUrl = type === 'pdf' ? 'https://drive.google.com/file/d/1YmSzJQ7srGFjUv1KwyDkDVYENQsg8Nl2/view?usp=drive_link' : 'https://docs.google.com/presentation/d/1a_SicLBki8z24rwPGn5ee97Njl4Kvubg/edit?usp=drive_link&ouid=100915729363243179814&rtpof=true&sd=true';
+    
+    const a = document.createElement('a');
+    a.href = fileUrl;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+},
+    
+    const a = document.createElement('a');
+    a.href = fileUrl;
+    a.target = '_blank';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+},
             generateCertificate: () => {
                 const user = window.app.state.currentUser; if (!user) return;
                 window.app.showLoading("t_cert_start");
