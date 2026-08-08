@@ -211,7 +211,7 @@
                         </div>
                         <div id="content-qris" class="text-center">
                             <div class="bg-white p-4 rounded-xl inline-block border-2 border-dashed border-gray-300 mb-4">
-                                <img src="https://placehold.co/250x250/f1f5f9/4f46e5?text=QRIS+PAYMENT" alt="QRIS" class="mx-auto rounded-lg shadow-sm max-w-[250px]">
+                                <img src="https://placehold.co/250x250/f1f5f9/4f46e5?text=QRIS+PAYMENT" alt="QRIS" class="mx-auto rounded-lg shadow-sm max-w-[250px]" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f5f9\'/><text x=\'50%\' y=\'50%\' font-size=\'14\' fill=\'%234f46e5\' text-anchor=\'middle\' dominant-baseline=\'middle\'>QRIS Code</text></svg>'">
                             </div>
                             <p class="text-sm text-gray-600 dark:text-gray-400 mb-4" data-i18n="pay_scan">Scan QR code di atas menggunakan aplikasi E-Wallet.</p>
                             <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 rounded-lg p-4 mt-6">
@@ -281,7 +281,7 @@
                         </div>
                         <div class="p-6 flex flex-col items-center text-center">
                             <div class="w-full h-40 bg-gray-100 dark:bg-gray-800 rounded-xl mb-6 relative overflow-hidden border flex items-center justify-center">
-                                <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('SERTIFIKAT.png');"></div>
+                                <div id="cert-preview-bg" class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('SERTIFIKAT.png');"></div>
                                 <div class="relative z-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-4 py-2 rounded-lg border shadow-sm">
                                     <p class="text-xs font-semibold text-gray-800 dark:text-gray-300"><span data-i18n="cert_name">Atas Nama:</span> <span id="cert-preview-name" class="text-primary">...</span></p>
                                 </div>
@@ -350,7 +350,7 @@
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
         import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, doc, getDoc, setDoc, updateDoc, deleteDoc, onSnapshot, query, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getFirestore, collection, doc, getDoc, setDoc, updateDoc, deleteDoc, onSnapshot, query } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
         const defaultFirebaseConfig = { projectId: "dummy-project-id" };
         let appFb, db, auth;
@@ -388,7 +388,6 @@
                         await signInAnonymously(auth);
                         const docRef = doc(db, 'artifacts', appId, 'public', 'data', 'kode_akses', code);
                         const fbData = { ...dataObj };
-                        if (fbData.createdAt) fbData.createdAt = serverTimestamp();
                         if (dataObj._isUpdate) { delete fbData._isUpdate; await updateDoc(docRef, fbData); } 
                         else { delete fbData._isUpdate; await setDoc(docRef, fbData); }
                         return true;
@@ -611,44 +610,81 @@
             },
             logout: () => { window.app.state.currentUser = null; window.app.navigate('home'); },
             downloadFile: (type) => {
-    window.app.showToast(window.app.t('t_mod_start'));
-    
-    // Sesuaikan nama file ini dengan nama file asli yang Anda upload di GitHub
-    const fileName = type === 'pdf' ? 'EBOOK BUAT WEBSITE AI.pdf' : 'PPT BUAT WEBSITE AI.pptx';
-    
-    const a = document.createElement('a');
-    a.href = fileName;
-    a.target = '_blank';
-    a.download = fileName;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-},
+                window.app.showToast(window.app.t('t_mod_start'));
+                const fileName = type === 'pdf' ? 'URL_LINK_GOOGLE_DRIVE_EBOOK_ANDA' : 'URL_LINK_GOOGLE_DRIVE_PPT_ANDA';
+                const a = document.createElement('a');
+                a.href = fileName;
+                a.target = '_blank';
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             },
             generateCertificate: () => {
                 const user = window.app.state.currentUser; if (!user) return;
                 window.app.showLoading("t_cert_start");
 
-                // Menggunakan canvas gambar aman untuk menghindari CORS error
                 const canvas = document.createElement('canvas');
                 canvas.width = 1200; canvas.height = 850;
                 const ctx = canvas.getContext('2d');
 
                 const img = new Image();
                 img.crossOrigin = "anonymous";
+                
+                // Safe Fallback Handler to completely prevent console errors
                 img.onload = () => {
-                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    drawTextAndPDF(canvas.toDataURL('image/png'));
+                    try {
+                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                        drawTextAndPDF(canvas.toDataURL('image/png'));
+                    } catch (err) {
+                        renderFallbackCertificate();
+                    }
                 };
                 img.onerror = () => {
-                    // Fallback template jika gambar gagal dimuat akibat CORS/jaringan
-                    ctx.fillStyle = "#0f172a"; ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = "#f8fafc"; ctx.fillRect(20, 20, canvas.width - 40, canvas.height - 40);
-                    ctx.fillStyle = "#1e293b"; ctx.font = "bold 48px Inter"; ctx.textAlign = "center";
-                    ctx.fillText("SERTIFIKAT PENGHARGAAN", canvas.width / 2, 180);
-                    drawTextAndPDF(canvas.toDataURL('image/png'));
+                    renderFallbackCertificate();
                 };
                 img.src = 'SERTIFIKAT.png';
+
+                function renderFallbackCertificate() {
+                    // Professional fallback certificate design when SERTIFIKAT.png is not found
+                    ctx.fillStyle = "#ffffff";
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Border Frame
+                    ctx.strokeStyle = "#1e3a8a";
+                    ctx.lineWidth = 12;
+                    ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
+
+                    ctx.strokeStyle = "#fbbf24";
+                    ctx.lineWidth = 3;
+                    ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
+
+                    // Header Title
+                    ctx.fillStyle = "#1e3a8a";
+                    ctx.font = "bold 52px Inter, sans-serif";
+                    ctx.textAlign = "center";
+                    ctx.fillText("SERTIFIKAT PENGHARGAAN", canvas.width / 2, 160);
+
+                    ctx.fillStyle = "#4b5563";
+                    ctx.font = "24px Inter, sans-serif";
+                    ctx.fillText("DIBERIKAN KEPADA:", canvas.width / 2, 260);
+
+                    // User Name
+                    ctx.fillStyle = "#4f46e5";
+                    ctx.font = "bold 56px Inter, sans-serif";
+                    ctx.fillText(user.nama.toUpperCase(), canvas.width / 2, 350);
+
+                    // Description
+                    ctx.fillStyle = "#374151";
+                    ctx.font = "20px Inter, sans-serif";
+                    ctx.fillText("Atas partisipasi dan kelulusannya dalam program pelatihan eksklusif:", canvas.width / 2, 440);
+
+                    ctx.fillStyle = "#111827";
+                    ctx.font = "bold 32px Inter, sans-serif";
+                    ctx.fillText("Privat Pembuatan Website AI Dari Nol Sampai Domain", canvas.width / 2, 500);
+
+                    drawTextAndPDF(canvas.toDataURL('image/png'));
+                }
 
                 function drawTextAndPDF(bgDataUrl) {
                     const { jsPDF } = window.jspdf;
@@ -658,13 +694,14 @@
 
                     doc.addImage(bgDataUrl, 'PNG', 0, 0, w, h);
                     
-                    // Tulis nama persis di tengah sertifikat
-                    doc.setFont("helvetica", "bold");
-                    doc.setFontSize(36);
-                    doc.setTextColor(15, 23, 42);
-                    doc.text(user.nama.toUpperCase(), w / 2, 105, { align: "center" });
+                    // Fallback text drawing if image wasn't the custom template
+                    if (bgDataUrl.includes('data:image/png;base64') && img.complete && img.naturalWidth > 0) {
+                        doc.setFont("helvetica", "bold");
+                        doc.setFontSize(36);
+                        doc.setTextColor(15, 23, 42);
+                        doc.text(user.nama.toUpperCase(), w / 2, 105, { align: "center" });
+                    }
 
-                    // Generate QR Code Validasi
                     const qrDiv = document.createElement("div");
                     new QRCode(qrDiv, { text: `https://verify.aicourse.demo/cert/${Math.random()}`, width: 100, height: 100 });
                     
@@ -731,8 +768,15 @@
         document.addEventListener('DOMContentLoaded', () => {
             window.app.applyTranslations();
             window.app.updateThemeIcon();
+            
+            // Graceful Dashboard Preview Background Handling
+            const testImg = new Image();
+            testImg.onerror = () => {
+                const prevBg = document.getElementById('cert-preview-bg');
+                if (prevBg) prevBg.style.backgroundImage = 'linear-gradient(135deg, #1e3a8a 0%, #312e81 100%)';
+            };
+            testImg.src = 'SERTIFIKAT.png';
         });
     </script>
 </body>
 </html>
-```eof
