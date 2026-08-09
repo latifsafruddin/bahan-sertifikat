@@ -214,15 +214,26 @@
                             <button onclick="app.switchPaymentTab('qris')" id="tab-qris" class="flex-1 py-2 px-4 rounded-lg font-medium text-sm transition bg-primary text-white shadow">QR DANA / QRIS</button>
                             <button onclick="app.switchPaymentTab('transfer')" id="tab-transfer" class="flex-1 py-2 px-4 rounded-lg font-medium text-sm transition bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400" data-i18n="pay_tab_tf">Transfer Bank</button>
                         </div>
+                        
+                        <!-- QRIS Section Updated -->
                         <div id="content-qris" class="text-center">
-                            <div class="bg-white p-4 rounded-xl inline-block border-2 border-dashed border-gray-300 mb-4">
-                                <img src="https://placehold.co/250x250/f1f5f9/4f46e5?text=QRIS+PAYMENT" alt="QRIS" class="mx-auto rounded-lg shadow-sm max-w-[250px]" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'200\' height=\'200\'><rect width=\'100%\' height=\'100%\' fill=\'%23f1f5f9\'/><text x=\'50%\' y=\'50%\' font-size=\'14\' fill=\'%234f46e5\' text-anchor=\'middle\' dominant-baseline=\'middle\'>QRIS Code</text></svg>'">
+                            <div class="bg-white p-4 rounded-xl inline-block border-2 border-dashed border-gray-300 mb-3 relative group">
+                                <img src="QRIS SHOPEEPAY.jpeg" alt="QRIS ShopeePay" class="mx-auto rounded-lg shadow-sm w-[250px] object-contain cursor-pointer" onclick="window.open(this.src, '_blank')">
+                                <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg pointer-events-none">
+                                    <i class="fa-solid fa-magnifying-glass-plus text-white text-3xl"></i>
+                                </div>
+                            </div>
+                            <div>
+                                <a href="QRIS SHOPEEPAY.jpeg" download="QRIS_ShopeePay_AI_Course.jpeg" class="inline-flex items-center justify-center gap-2 text-sm text-primary hover:text-indigo-700 dark:text-indigo-400 dark:hover:text-indigo-300 font-medium mb-4 bg-indigo-50 dark:bg-indigo-900/30 px-4 py-2 rounded-lg transition">
+                                    <i class="fa-solid fa-download"></i> Download QRIS Image
+                                </a>
                             </div>
                             <p class="text-sm text-gray-600 dark:text-gray-400 mb-4" data-i18n="pay_scan">Scan QR code di atas menggunakan aplikasi E-Wallet.</p>
                             <div class="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 rounded-lg p-4 mt-6">
                                 <button onclick="app.simulatePaymentSuccess()" class="bg-secondary hover:bg-emerald-600 text-white font-semibold py-2 px-6 rounded-lg transition w-full shadow-sm text-sm" data-i18n="pay_sim_btn">Simulasikan Pembayaran Berhasil</button>
                             </div>
                         </div>
+
                         <div id="content-transfer" class="hidden space-y-4">
                             <div class="border border-gray-200 dark:border-gray-700 rounded-xl p-4 flex items-center justify-between">
                                 <div class="flex items-center gap-4">
@@ -239,7 +250,7 @@
 
         <!-- Student Dashboard View -->
         <section id="view-dashboard" class="view-section flex-grow p-4 md:p-8">
-            <div class="max-w-5xl mx-auto">
+            <div class="max-w-6xl mx-auto">
                 <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-6 md:p-8 mb-8 flex flex-col md:flex-row justify-between items-center gap-6">
                     <div>
                         <h2 class="text-2xl font-bold text-dark dark:text-white mb-1"><span data-i18n="dash_welcome">Selamat datang,</span> <span id="dash-user-name" class="text-primary">User</span>! 🎉</h2>
@@ -251,7 +262,8 @@
                     </div>
                 </div>
 
-                <div class="grid md:grid-cols-2 gap-8">
+                <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8">
+                    <!-- Modul Kursus -->
                     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden">
                         <div class="p-6 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl"><i class="fa-solid fa-book-open"></i></div>
@@ -264,43 +276,120 @@
                                         <i class="fa-regular fa-file-pdf text-3xl text-red-500"></i>
                                         <div><p class="font-bold text-gray-800 dark:text-gray-200">EBOOK BUAT WEBSITE AI.pdf</p><p class="text-xs text-gray-500">PDF Document • 2.4 MB</p></div>
                                     </div>
-                                    <button class="w-10 h-10 rounded-full bg-white dark:bg-gray-700 border flex items-center justify-center"><i class="fa-solid fa-download"></i></button>
+                                    <button class="w-10 h-10 rounded-full bg-white dark:bg-gray-700 border flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600"><i class="fa-solid fa-download"></i></button>
                                 </div>
                                 <div class="flex items-center justify-between p-4 bg-gray-50 dark:bg-gray-800 border rounded-xl hover:border-primary transition cursor-pointer" onclick="app.downloadFile('ppt')">
                                     <div class="flex items-center gap-4">
                                         <i class="fa-regular fa-file-powerpoint text-3xl text-orange-500"></i>
                                         <div><p class="font-bold text-gray-800 dark:text-gray-200">PPT BUAT WEBSITE AI.pptx</p><p class="text-xs text-gray-500">PowerPoint • 5.1 MB</p></div>
                                     </div>
-                                    <button class="w-10 h-10 rounded-full bg-white dark:bg-gray-700 border flex items-center justify-center"><i class="fa-solid fa-download"></i></button>
+                                    <button class="w-10 h-10 rounded-full bg-white dark:bg-gray-700 border flex items-center justify-center hover:bg-gray-100 dark:hover:bg-gray-600"><i class="fa-solid fa-download"></i></button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+                    <!-- Tutor AI Card -->
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden relative flex flex-col">
+                        <div class="absolute top-0 right-0 bg-gradient-to-l from-purple-500 to-indigo-500 text-white text-xs font-bold px-4 py-1 rounded-bl-lg shadow-sm flex items-center gap-1 z-10">
+                            <i class="fa-solid fa-sparkles"></i> AI Powered
+                        </div>
+                        <div class="p-6 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-xl"><i class="fa-solid fa-robot"></i></div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200" data-i18n="tutor_title">Tutor AI Pribadi</h3>
+                        </div>
+                        <div class="p-6 flex flex-col items-center text-center flex-grow">
+                            <div class="w-full bg-purple-50 dark:bg-purple-900/20 rounded-xl p-4 mb-4 border border-purple-100 dark:border-purple-800/50 flex-grow flex items-center justify-center">
+                                <p class="text-sm text-purple-800 dark:text-purple-300 italic font-medium">"Saya siap membantu Anda memahami materi AI dan menyelesaikan error kode program."</p>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6" data-i18n="tutor_desc">Tanyakan materi seputar AI, web, atau kode kepada Asisten AI kami 24/7.</p>
+                            <button onclick="app.openTutorModal()" class="w-full mt-auto bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                                <i class="fa-regular fa-comments"></i> <span data-i18n="tutor_btn">Mulai Chat</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Sertifikat Pro Card -->
                     <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden relative">
                         <div class="absolute top-0 right-0 bg-gradient-to-l from-yellow-400 to-yellow-500 text-white text-xs font-bold px-4 py-1 rounded-bl-lg shadow-sm flex items-center gap-1">
-                            <i class="fa-solid fa-crown"></i> Pro Feature
+                            <i class="fa-solid fa-crown"></i> Pro
                         </div>
                         <div class="p-6 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 flex items-center gap-3">
                             <div class="w-10 h-10 rounded-full bg-yellow-100 text-yellow-600 flex items-center justify-center text-xl"><i class="fa-solid fa-certificate"></i></div>
                             <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200" data-i18n="cert_title">Sertifikat Kelulusan</h3>
                         </div>
                         <div class="p-6 flex flex-col items-center text-center">
-                            <div class="w-full h-40 bg-gray-100 dark:bg-gray-800 rounded-xl mb-6 relative overflow-hidden border flex items-center justify-center">
-                                <div id="cert-preview-bg" class="absolute inset-0 bg-cover bg-center opacity-85" style="background-image: url('sertifikat_4.jpg');"></div>
-                                <div class="relative z-10 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm px-4 py-2 rounded-lg border shadow-sm">
-                                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-300"><span data-i18n="cert_name">Atas Nama:</span> <span id="cert-preview-name" class="text-primary">...</span></p>
+                            <div class="w-full h-40 bg-gray-100 dark:bg-gray-800 rounded-xl mb-6 relative overflow-hidden border flex items-center justify-center group">
+                                <div id="cert-preview-bg" class="absolute inset-0 bg-cover bg-center opacity-85 transition-transform group-hover:scale-105" style="background-image: url('sertifikat_5.jpg');"></div>
+                                <div class="relative z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md px-4 py-2 rounded-lg border shadow-sm">
+                                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-300"><span data-i18n="cert_name">Atas Nama:</span> <span class="cert-preview-name text-primary">...</span></p>
                                 </div>
                             </div>
                             <p class="text-sm text-gray-600 dark:text-gray-400 mb-6" data-i18n="cert_desc">Generate sertifikat resmi ber-QR Code atas nama Anda.</p>
-                            <button onclick="app.generateCertificate()" class="w-full bg-gradient-to-r from-primary to-indigo-600 hover:from-indigo-600 hover:to-primary text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2">
-                                <i class="fa-solid fa-wand-magic-sparkles"></i> <span data-i18n="cert_btn">Generate Sertifikat Pro</span>
+                            <button onclick="app.downloadDocument('cert')" class="w-full bg-gradient-to-r from-primary to-indigo-600 hover:from-indigo-600 hover:to-primary text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-download"></i> <span data-i18n="cert_btn">Unduh Sertifikat PDF</span>
                             </button>
                         </div>
                     </div>
+
+                    <!-- Transkrip Nilai Card (NEW) -->
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 overflow-hidden relative">
+                        <div class="absolute top-0 right-0 bg-gradient-to-l from-orange-400 to-orange-500 text-white text-xs font-bold px-4 py-1 rounded-bl-lg shadow-sm flex items-center gap-1">
+                            <i class="fa-solid fa-star"></i> Pro
+                        </div>
+                        <div class="p-6 border-b border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center text-xl"><i class="fa-solid fa-clipboard-list"></i></div>
+                            <h3 class="text-lg font-bold text-gray-800 dark:text-gray-200">Transkrip Nilai</h3>
+                        </div>
+                        <div class="p-6 flex flex-col items-center text-center">
+                            <div class="w-full h-40 bg-gray-100 dark:bg-gray-800 rounded-xl mb-6 relative overflow-hidden border flex items-center justify-center group">
+                                <div id="nilai-preview-bg" class="absolute inset-0 bg-cover bg-center opacity-85 transition-transform group-hover:scale-105" style="background-image: url('NILAI.png');"></div>
+                                <div class="relative z-10 bg-white/95 dark:bg-gray-900/95 backdrop-blur-md px-4 py-2 rounded-lg border shadow-sm">
+                                    <p class="text-xs font-semibold text-gray-800 dark:text-gray-300"><span data-i18n="cert_name">Atas Nama:</span> <span class="cert-preview-name text-primary">...</span></p>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">Unduh rincian penilaian hasil pembelajaran materi AI.</p>
+                            <button onclick="app.downloadDocument('transcript')" class="w-full bg-gradient-to-r from-orange-500 to-red-500 hover:from-red-500 hover:to-orange-500 text-white font-bold py-3 px-4 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                                <i class="fa-solid fa-download"></i> <span>Unduh Transkrip PDF</span>
+                            </button>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
+
+        <!-- AI Tutor Modal Overlay -->
+        <div id="modal-tutor" class="fixed inset-0 bg-gray-900/60 dark:bg-black/70 z-[90] hidden items-center justify-center backdrop-blur-sm p-4">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-2xl flex flex-col h-[80vh] overflow-hidden border border-gray-200 dark:border-gray-700 transition-all">
+                <div class="px-6 py-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center bg-gray-50 dark:bg-gray-800/50">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 dark:bg-purple-900/40 text-purple-600 dark:text-purple-400 flex items-center justify-center"><i class="fa-solid fa-robot"></i></div>
+                        <div>
+                            <h3 class="font-bold text-gray-800 dark:text-white leading-tight">AI Tutor</h3>
+                            <p class="text-xs text-emerald-500 flex items-center gap-1 mt-0.5"><span class="w-2 h-2 rounded-full bg-emerald-500 inline-block"></span> Online (Gemini 3.0)</p>
+                        </div>
+                    </div>
+                    <button onclick="app.closeTutorModal()" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+                </div>
+                <div id="chat-messages" class="p-6 overflow-y-auto flex-grow flex flex-col gap-4 bg-slate-50 dark:bg-gray-900/50">
+                    <div class="flex items-start gap-3">
+                        <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center flex-shrink-0 mt-1"><i class="fa-solid fa-robot text-sm"></i></div>
+                        <div class="bg-white dark:bg-gray-800 p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 dark:border-gray-700 max-w-[85%] text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
+                            Halo! Saya asisten AI dari AI Course Pro. Ada yang bisa saya bantu terkait materi AI atau coding hari ini?
+                        </div>
+                    </div>
+                </div>
+                <div class="p-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800">
+                    <form onsubmit="event.preventDefault(); app.sendChatMessage();" class="flex gap-2">
+                        <input type="text" id="chat-input" class="flex-grow px-4 py-3.5 rounded-xl border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-purple-500 transition-all placeholder-gray-400" placeholder="Ketik pertanyaan Anda...">
+                        <button type="submit" id="chat-submit" class="bg-purple-600 hover:bg-purple-700 text-white w-14 rounded-xl flex items-center justify-center shadow-md transition disabled:opacity-50 disabled:cursor-not-allowed">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
 
         <!-- Admin Login View -->
         <section id="view-admin-login" class="view-section flex-grow flex items-center justify-center p-4">
@@ -452,15 +541,15 @@
                 pay_method: "Pilih Metode Pembayaran", pay_tab_tf: "Transfer Bank", pay_scan: "Scan QR code di atas menggunakan aplikasi E-Wallet.",
                 pay_sim_btn: "Simulasikan Pembayaran Berhasil", dash_welcome: "Selamat datang,", dash_subtitle: "Akses materi dan sertifikat Anda di bawah ini.",
                 dash_status: "Status", dash_premium: "Akses Premium", mod_title: "Materi Kursus", cert_title: "Sertifikat Kelulusan",
-                cert_name: "Atas Nama:", cert_desc: "Generate sertifikat resmi ber-QR Code atas nama Anda.", cert_btn: "Generate Sertifikat Pro",
+                cert_name: "Atas Nama:", cert_desc: "Generate sertifikat resmi ber-QR Code atas nama Anda.", cert_btn: "Unduh Sertifikat PDF",
                 checkout_title: "Checkout Pendaftaran", checkout_step1: "Detail Pendaftar", checkout_btn_invoice: "Lanjut Pembayaran",
                 status_unused: "belum dipakai", status_used: "sudah dipakai", t_login_req: "Nama dan Kode harus diisi!",
                 t_login_succ: "Berhasil masuk kelas!", t_welcome_back: "Selamat datang kembali!", t_code_used: "Kode sudah digunakan orang lain.",
                 t_code_inv: "Kode akses tidak valid.", t_logout: "Berhasil keluar", t_copy_succ: "Berhasil disalin!", t_copy_err: "Gagal menyalin",
                 t_pay_verify: "Verifikasi pembayaran...", t_pay_succ: "Pembayaran Berhasil!", t_pay_succ_desc: "Berikut kode akses Anda:",
-                t_copy_login: "Salin & Login Sekarang", t_mod_start: "Memulai unduhan modul PDF...", t_cert_start: "Mencetak Sertifikat Pro...",
-                t_cert_succ: "Sertifikat berhasil diunduh!", t_admin_succ: "Login Admin Berhasil", t_pin_err: "PIN Salah!", t_admin_out: "Keluar Admin",
-                t_code_gen: "Kode baru berhasil dibuat!", t_no_data: "Belum ada data."
+                t_copy_login: "Salin & Login Sekarang", t_mod_start: "Memulai unduhan modul PDF...", t_cert_start: "Mencetak Dokumen PDF...",
+                t_cert_succ: "Dokumen berhasil diunduh!", t_admin_succ: "Login Admin Berhasil", t_pin_err: "PIN Salah!", t_admin_out: "Keluar Admin",
+                t_code_gen: "Kode baru berhasil dibuat!", t_no_data: "Belum ada data.", tutor_title: "Tutor AI Pribadi", tutor_desc: "Tanyakan materi seputar AI, web, atau kode kepada Asisten AI kami 24/7.", tutor_btn: "Mulai Chat"
             },
             en: {
                 nav_admin: "Admin Panel", nav_logout: "Logout", loading: "Processing...",
@@ -472,21 +561,21 @@
                 pay_method: "Select Payment Method", pay_tab_tf: "Bank Transfer", pay_scan: "Scan the QR code above.",
                 pay_sim_btn: "Simulate Successful Payment", dash_welcome: "Welcome,", dash_subtitle: "Access your materials and certificate below.",
                 dash_status: "Status", dash_premium: "Premium Access", mod_title: "Course Materials", cert_title: "Certificate of Completion",
-                cert_name: "Name:", cert_desc: "Generate an official QR-coded certificate in your name.", cert_btn: "Generate Pro Certificate",
+                cert_name: "Name:", cert_desc: "Generate an official QR-coded certificate in your name.", cert_btn: "Download PDF Certificate",
                 checkout_title: "Registration Checkout", checkout_step1: "Registrant Details", checkout_btn_invoice: "Proceed to Payment",
                 status_unused: "unused", status_used: "used", t_login_req: "Name and Code are required!",
                 t_login_succ: "Successfully entered class!", t_welcome_back: "Welcome back!", t_code_used: "Code is already used.",
                 t_code_inv: "Access code not found.", t_logout: "Logged out", t_copy_succ: "Copied!", t_copy_err: "Failed to copy",
                 t_pay_verify: "Verifying...", t_pay_succ: "Payment Successful!", t_pay_succ_desc: "Your code:",
-                t_copy_login: "Copy & Login", t_mod_start: "Starting download...", t_cert_start: "Printing Certificate...",
-                t_cert_succ: "Certificate downloaded!", t_admin_succ: "Admin Login Successful", t_pin_err: "Wrong PIN!", t_admin_out: "Logged out",
-                t_code_gen: "New code generated!", t_no_data: "No data."
+                t_copy_login: "Copy & Login", t_mod_start: "Starting download...", t_cert_start: "Printing PDF Document...",
+                t_cert_succ: "Document downloaded!", t_admin_succ: "Admin Login Successful", t_pin_err: "Wrong PIN!", t_admin_out: "Logged out",
+                t_code_gen: "New code generated!", t_no_data: "No data.", tutor_title: "Personal AI Tutor", tutor_desc: "Ask anything about AI, web, or code to our AI Assistant 24/7.", tutor_btn: "Start Chat"
             }
         };
 
         window.app = {
             state: {
-                currentUser: null, currentCode: null, isAdminAuth: false, codes: [],
+                currentUser: null, currentCode: null, isAdminAuth: false, codes: [], chatHistory: [],
                 lang: localStorage.getItem('lang') || 'id',
                 theme: localStorage.getItem('theme') || 'light'
             },
@@ -558,7 +647,7 @@
                 
                 if (viewId === 'dashboard') {
                     document.getElementById('dash-user-name').innerText = window.app.state.currentUser.nama;
-                    document.getElementById('cert-preview-name').innerText = window.app.state.currentUser.nama;
+                    document.querySelectorAll('.cert-preview-name').forEach(el => el.innerText = window.app.state.currentUser.nama);
                 } else if (viewId === 'admin') {
                     window.app.setupAdminSnapshot();
                 }
@@ -575,6 +664,96 @@
                 try { document.execCommand('copy'); window.app.showToast("Berhasil disalin!"); } catch(e){}
                 document.body.removeChild(ta);
             },
+            
+            // --- AI Tutor Methods ---
+            openTutorModal: () => {
+                document.getElementById('modal-tutor').classList.remove('hidden');
+                document.getElementById('modal-tutor').classList.add('flex');
+            },
+            closeTutorModal: () => {
+                document.getElementById('modal-tutor').classList.add('hidden');
+                document.getElementById('modal-tutor').classList.remove('flex');
+            },
+            formatMarkdownText: (text) => {
+                let html = text.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+                html = html.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>"); // Bold
+                html = html.replace(/\*(.*?)\*/g, "<em>$1</em>"); // Italic
+                html = html.replace(/`(.*?)`/g, "<code class='bg-gray-200 dark:bg-gray-700 px-1 rounded text-pink-600 dark:text-pink-400 font-mono text-xs'>$1</code>"); // Inline code
+                html = html.replace(/\n/g, "<br>"); // Line breaks
+                return html;
+            },
+            appendChatMessage: (text, sender) => {
+                const chatBox = document.getElementById('chat-messages');
+                const msgDiv = document.createElement('div');
+                msgDiv.className = sender === 'user' ? 'flex items-start gap-3 flex-row-reverse mt-2' : 'flex items-start gap-3 mt-2';
+                
+                const initial = window.app.state.currentUser?.nama?.charAt(0).toUpperCase() || 'U';
+                const avatar = sender === 'user' 
+                    ? `<div class="w-8 h-8 rounded-full bg-primary/20 text-primary flex items-center justify-center flex-shrink-0 font-bold text-xs mt-1">${initial}</div>`
+                    : `<div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center flex-shrink-0 mt-1"><i class="fa-solid fa-robot text-sm"></i></div>`;
+                    
+                const bubbleClasses = sender === 'user'
+                    ? 'bg-primary text-white p-3.5 rounded-2xl rounded-tr-none shadow-sm max-w-[85%] text-sm leading-relaxed'
+                    : 'bg-white dark:bg-gray-800 p-3.5 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 dark:border-gray-700 max-w-[85%] text-sm text-gray-700 dark:text-gray-300 leading-relaxed';
+                    
+                msgDiv.innerHTML = `
+                    ${avatar}
+                    <div class="${bubbleClasses}">${window.app.formatMarkdownText(text)}</div>
+                `;
+                chatBox.appendChild(msgDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            },
+            sendChatMessage: async () => {
+                const inputEl = document.getElementById('chat-input');
+                const btnEl = document.getElementById('chat-submit');
+                const text = inputEl.value.trim();
+                if (!text) return;
+                
+                inputEl.value = ''; inputEl.disabled = true; btnEl.disabled = true;
+                window.app.appendChatMessage(text, 'user');
+                
+                const chatBox = document.getElementById('chat-messages');
+                const thinkingId = 'think-' + Date.now();
+                const thinkDiv = document.createElement('div');
+                thinkDiv.id = thinkingId;
+                thinkDiv.className = 'flex items-start gap-3 mt-2';
+                thinkDiv.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center flex-shrink-0 mt-1"><i class="fa-solid fa-robot text-sm"></i></div>
+                    <div class="bg-white dark:bg-gray-800 px-4 py-3 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 dark:border-gray-700 max-w-[85%] flex items-center gap-1.5 h-10">
+                        <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce"></span>
+                        <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce animation-delay-2000"></span>
+                        <span class="w-2 h-2 rounded-full bg-gray-400 animate-bounce animation-delay-4000"></span>
+                    </div>
+                `;
+                chatBox.appendChild(thinkDiv);
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+                try {
+                    window.app.state.chatHistory.push({ role: "user", parts: [{ text: text }] });
+                    const payload = {
+                        contents: window.app.state.chatHistory,
+                        systemInstruction: { parts: [{ text: "You are a helpful AI tutor for AI Course Pro. Help students learn AI & coding. Format output in markdown." }] }
+                    };
+                    const apiKey = "";
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+                    
+                    const response = await fetch(apiUrl, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+                    const result = await response.json();
+                    document.getElementById(thinkingId)?.remove();
+                    
+                    if (result.candidates && result.candidates[0].content && result.candidates[0].content.parts) {
+                        const aiText = result.candidates[0].content.parts[0].text;
+                        window.app.state.chatHistory.push(result.candidates[0].content);
+                        window.app.appendChatMessage(aiText, 'ai');
+                    } else { window.app.appendChatMessage("Maaf, terjadi kesalahan.", 'ai'); }
+                } catch (err) {
+                    document.getElementById(thinkingId)?.remove();
+                    window.app.appendChatMessage("Maaf, terjadi kesalahan koneksi.", 'ai');
+                } finally {
+                    inputEl.disabled = false; btnEl.disabled = false; inputEl.focus();
+                }
+            },
+
             simulatePaymentSuccess: async () => {
                 window.app.showLoading("t_pay_verify");
                 const newCode = "AI-" + Math.random().toString(36).substring(2, 8).toUpperCase();
@@ -621,101 +800,73 @@
                 window.app.showToast(window.app.t('t_mod_start'));
                 const fileUrl = type === 'pdf' ? 'https://drive.google.com/file/d/1YmSzJQ7srGFjUv1KwyDkDVYENQsg8Nl2/view?usp=drive_link' : 'https://docs.google.com/presentation/d/1a_SicLBki8z24rwPGn5ee97Njl4Kvubg/edit?usp=drive_link&ouid=100915729363243179814&rtpof=true&sd=true';
                 const a = document.createElement('a');
-                a.href = fileUrl;
-                a.target = '_blank';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                a.href = fileUrl; a.target = '_blank'; document.body.appendChild(a); a.click(); document.body.removeChild(a);
             },
-            generateCertificate: () => {
+            
+            // --- NEW: Robust Native Text PDF Document Generator ---
+            // This methodology fully bypasses Canvas CORS tainted issues by placing the raw base64 image onto the PDF
+            // and using jsPDF's built in .text() to draw the name, rather than relying on .toDataUrl() of a modified canvas.
+            downloadDocument: (docType) => {
                 const user = window.app.state.currentUser; if (!user) return;
                 window.app.showLoading("t_cert_start");
 
-                const canvas = document.createElement('canvas');
-                canvas.width = 1200; canvas.height = 850;
-                const ctx = canvas.getContext('2d');
-
-                const img = new Image();
-                img.crossOrigin = "anonymous";
+                const imgSrc = docType === 'cert' ? 'sertifikat_5.jpg' : 'NILAI.png';
+                const filename = docType === 'cert' ? `Sertifikat_${user.nama.replace(/\s+/g, '_')}.pdf` : `Transkrip_${user.nama.replace(/\s+/g, '_')}.pdf`;
                 
+                const img = new Image();
                 img.onload = () => {
                     try {
-                        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                        drawTextAndPDF(canvas.toDataURL('image/png'));
+                        const { jsPDF } = window.jspdf;
+                        const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+                        const w = doc.internal.pageSize.getWidth();
+                        const h = doc.internal.pageSize.getHeight();
+
+                        // Add the image directly to PDF (maintains 100% original quality and ignores CORS)
+                        doc.addImage(img, img.src.includes('.png') ? 'PNG' : 'JPEG', 0, 0, w, h);
+                        
+                        // Use native PDF text overlay
+                        doc.setFont("helvetica", "bold");
+                        doc.setTextColor(15, 23, 42); // Dark Navy Blue
+                        
+                        // Precise layout alignments based on the visual assets
+                        if (docType === 'cert') {
+                            doc.setFontSize(28);
+                            // Centered on the certificate template
+                            doc.text(user.nama.toUpperCase(), w / 2, 94, { align: "center" });
+                        } else if (docType === 'transcript') {
+                            doc.setFontSize(18);
+                            // Centered on the Nilai template under "Diberikan kepada:"
+                            doc.text(user.nama.toUpperCase(), w / 2, 63, { align: "center" });
+                        }
+
+                        // Generate Verification QR Code
+                        const qrDiv = document.createElement("div");
+                        new QRCode(qrDiv, { text: `https://verify.aicourse.demo/${docType}/${Math.random().toString(36).substring(7)}`, width: 100, height: 100 });
+                        
+                        setTimeout(() => {
+                            const qrCanvas = qrDiv.querySelector("canvas");
+                            if (qrCanvas) {
+                                // Add QR in the bottom right corner
+                                doc.addImage(qrCanvas.toDataURL("image/png"), "PNG", w - 35, h - 35, 25, 25);
+                            }
+                            doc.save(filename);
+                            window.app.hideLoading();
+                            window.app.showToast(window.app.t('t_cert_succ'), "success");
+                        }, 500);
+
                     } catch (err) {
-                        renderFallbackCertificate();
+                        console.error("PDF Generate Error", err);
+                        window.app.hideLoading();
+                        window.app.showToast("Gagal memproses dokumen.", "error");
                     }
                 };
                 img.onerror = () => {
-                    renderFallbackCertificate();
+                    window.app.hideLoading();
+                    window.app.showToast(`Gambar ${imgSrc} tidak ditemukan di server.`, "error");
                 };
-                img.src = 'sertifikat_4.jpg';
-
-                function renderFallbackCertificate() {
-                    ctx.fillStyle = "#ffffff";
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    
-                    ctx.strokeStyle = "#1e3a8a";
-                    ctx.lineWidth = 12;
-                    ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
-
-                    ctx.strokeStyle = "#fbbf24";
-                    ctx.lineWidth = 3;
-                    ctx.strokeRect(48, 48, canvas.width - 96, canvas.height - 96);
-
-                    ctx.fillStyle = "#1e3a8a";
-                    ctx.font = "bold 52px Inter, sans-serif";
-                    ctx.textAlign = "center";
-                    ctx.fillText("SERTIFIKAT PENGHARGAAN", canvas.width / 2, 160);
-
-                    ctx.fillStyle = "#4b5563";
-                    ctx.font = "24px Inter, sans-serif";
-                    ctx.fillText("DIBERIKAN KEPADA:", canvas.width / 2, 260);
-
-                    ctx.fillStyle = "#4f46e5";
-                    ctx.font = "bold 56px Inter, sans-serif";
-                    ctx.fillText(user.nama.toUpperCase(), canvas.width / 2, 350);
-
-                    ctx.fillStyle = "#374151";
-                    ctx.font = "20px Inter, sans-serif";
-                    ctx.fillText("Atas partisipasi dan kelulusannya dalam program pelatihan eksklusif:", canvas.width / 2, 440);
-
-                    ctx.fillStyle = "#111827";
-                    ctx.font = "bold 32px Inter, sans-serif";
-                    ctx.fillText("Privat Pembuatan Website AI Dari Nol Sampai Domain", canvas.width / 2, 500);
-
-                    drawTextAndPDF(canvas.toDataURL('image/png'));
-                }
-
-                function drawTextAndPDF(bgDataUrl) {
-                    const { jsPDF } = window.jspdf;
-                    const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
-                    const w = doc.internal.pageSize.getWidth();
-                    const h = doc.internal.pageSize.getHeight();
-
-                    doc.addImage(bgDataUrl, 'PNG', 0, 0, w, h);
-                    
-                    if (img.complete && img.naturalWidth > 0) {
-                        doc.setFont("helvetica", "bold");
-                        doc.setFontSize(26);
-                        doc.setTextColor(15, 23, 42);
-                        doc.text(user.nama.toUpperCase(), w / 2, 94, { align: "center" });
-                    }
-
-                    const qrDiv = document.createElement("div");
-                    new QRCode(qrDiv, { text: `https://verify.aicourse.demo/cert/${Math.random()}`, width: 100, height: 100 });
-                    
-                    setTimeout(() => {
-                        const qrCanvas = qrDiv.querySelector("canvas");
-                        if (qrCanvas) {
-                            doc.addImage(qrCanvas.toDataURL("image/png"), "PNG", w - 35, h - 35, 25, 25);
-                        }
-                        doc.save(`Sertifikat_${user.nama.replace(/\s+/g, '_')}.pdf`);
-                        window.app.hideLoading();
-                        window.app.showToast(window.app.t('t_cert_succ'), "success");
-                    }, 400);
-                }
+                img.src = imgSrc;
             },
+
             handleAdminLogin: () => {
                 if (document.getElementById('admin-pin').value === '1234') {
                     window.app.state.isAdminAuth = true; document.getElementById('admin-pin').value = '';
@@ -769,12 +920,9 @@
             window.app.applyTranslations();
             window.app.updateThemeIcon();
             
-            const testImg = new Image();
-            testImg.onerror = () => {
-                const prevBg = document.getElementById('cert-preview-bg');
-                if (prevBg) prevBg.style.backgroundImage = 'linear-gradient(135deg, #1e3a8a 0%, #312e81 100%)';
-            };
-            testImg.src = 'sertifikat_4.jpg';
+            // Preload images for faster generation
+            const preloads = ['sertifikat_5.jpg', 'NILAI.png', 'QRIS SHOPEEPAY.jpeg'];
+            preloads.forEach(src => { const img = new Image(); img.src = src; });
         });
     </script>
 </body>
